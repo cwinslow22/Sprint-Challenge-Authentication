@@ -9,9 +9,10 @@ class Jokes extends Component {
   render() {
     return (
       <div>
+          <p>Here are some jokes?</p>
           <ul>
-              {this.state.users.map(user => (
-              <li key={user.id}>{user.username} from {user.department}</li>
+              {this.state.jokes.map(joke => (
+              <li key={joke.id}>{joke.setup} please don't ... {joke.punchline}</li>
               ))}
           </ul>
       </div>
@@ -29,8 +30,8 @@ class Jokes extends Component {
     axios
         .get('http://localhost:3300/api/jokes', reqOptions)
         .then(res => {
-            console.log('users data:', res.data);
-            this.setState({ users: res.data.users }); // or this.setState({ users: res.data }) if using res.json( users ); in the server index file for the get/api/users endpoint
+            console.log('jokes data:', res.data);
+            this.setState({ jokes: res.data }); // or this.setState({ users: res.data }) if using res.json( users ); in the server index file for the get/api/users endpoint
         })
         .catch(err => {
             console.error('Axios Failed', err ); // res.response.data
